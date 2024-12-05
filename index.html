@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DOB Finder</title>
+    <style>
+        /* General Styling */
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Arial', sans-serif;
+            background: #1e1e2f;
+            color: #f4f4f9;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 5% auto;
+            padding: 20px;
+            background: #29293d;
+            border-radius: 10px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+            text-align: center;
+        }
+
+        h1 {
+            font-size: 2rem;
+            color: #4caf50;
+            margin-bottom: 20px;
+        }
+
+        label {
+            font-size: 1rem;
+            margin-bottom: 10px;
+            display: block;
+            color: #bbb;
+        }
+
+        input {
+            width: 100%;
+            padding: 10px;
+            font-size: 1rem;
+            border: 1px solid #555;
+            border-radius: 5px;
+            margin-bottom: 20px;
+            background: #333;
+            color: #fff;
+        }
+
+        input:focus {
+            outline: none;
+            border-color: #4caf50;
+        }
+
+        button {
+            width: 100%;
+            padding: 10px;
+            font-size: 1rem;
+            font-weight: bold;
+            color: #fff;
+            background: #4caf50;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        button:hover {
+            background: #388e3c;
+        }
+
+        #result {
+            margin-top: 20px;
+            font-size: 1.2rem;
+            color: #f4f4f9;
+            background: #222;
+            padding: 15px;
+            border-radius: 5px;
+        }
+
+        #result strong {
+            color: #4caf50;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>DOB Finder</h1>
+        <label for="dob">Enter DOB (dd/mm/yyyy):</label>
+        <input type="text" id="dob" placeholder="e.g., 22/03/2007" onkeydown="checkEnter(event)">
+        <button onclick="fetchData()">Search</button>
+        <div id="result"></div>
+    </div>
+
+    <script>
+        const data = {
+            "22/03/2007": { name: "SYED ABDUL HAKEEM", location: "Tadbun" },
+            "18/02/2014": { name: "SYED ABDUL HAFEEZ", location: "Tadbun" },
+            "09/04/2003": { name: "MOHAMMED SAJID", location: "Tigal Kunta" },
+            "18/05/2006": { name: "MOHAMMED SAQIB", location: "Tigal Kunta" },
+            "18/07/2008": { name: "MOHAMMED SHAHID", location: "Tigal Kunta" },
+            "18/10/2018": { name: "MOHAMMED ZAHID", location: "Tigal Kunta" },
+            "13/01/2020": { name: "MOHAMMED SADIQ ANAS", location: "Tigal Kunta" },
+            "01/04/2019": { name: "ABDUL ALEEM", location: "Pahadi sharif" },
+            "28/03/2023": { name: "AMENA TAHURA", location: "Pahadi sharif" },
+            "12/06/2013": { name: "ABDUL MANNAN KHAN", location: "Pisal banda" },
+            "23/06/2022": { name: "NAYRA KHANAM", location: "Pisal banda" },
+            "04/08/2014": { name: "MOHAMMED HAMZA ZAKIR", location: "Saheth nagar" },
+            "03/07/2017": { name: "MOHAMMED UMAR ZAKIR", location: "Saheth nagar" },
+            "14/03/2019": { name: "SUMAYYA ZAKIR", location: "Saheth nagar" },
+            "16/10/2019": { name: "ABDUL WAHID", location: "Tadbun" },
+            "13/05/2021": { name: "KHADIJA FATHIMA", location: "Tadbun" },
+            "11/10/2024": { name: "ABDUL WAJID", location: "Tadbun" },
+            "23/08/2013": { name: "AMATUR RAHEEM MARYAM", location: "Falaknuma" },
+            "16/06/2016": { name: "SYED ABDULLAH", location: "Falaknuma" },
+            "08/03/2020": { name: "SYED MOHAMMED SULEMAN", location: "Falaknuma" },
+            "01/08/2024": { name: "ABDUL RAB AHMED", location: "Falaknuma" },
+            "07/05/2023": { name: "AMATULLAH ANABIYA", location: "Jeddah" },
+            "01/09/2022": { name: "AMATULLAH AYESHA", location: "Jeddah" },
+            "10/01/2023": { name: "SYED ABDUL AHAD", location: "Falaknuma" }
+        };
+
+        // Function to handle button click
+        function fetchData() {
+            const dob = document.getElementById("dob").value.trim();
+            const result = document.getElementById("result");
+
+            if (data[dob]) {
+                result.innerHTML = `
+                    <strong>Assalamualaikum!</strong><br>
+                    <div style="margin-top: 10px;">
+                        <div><strong>Your Name is:</strong> ${data[dob].name}</div>
+                        <div><strong>Your Location is:</strong> ${data[dob].location}</div>
+                    </div>
+                `;
+            } else {
+                result.innerHTML = `<strong>No data found</strong> for the entered DOB.`;
+            }
+        }
+
+        // Function to handle Enter key press
+        function checkEnter(event) {
+            if (event.key === "Enter") {
+                fetchData();
+            }
+        }
+    </script>
+</body>
+</html>
